@@ -182,6 +182,10 @@ dependencies {
     // Markdown
     implementation(libs.compose.markdown)
 
+    // MTDataFilesProvider
+    //noinspection UseTomlInstead
+    debugImplementation("com.github.L-JINBIN:MTDataFilesProvider:v1.0.0")
+
     // unit test
     testImplementation(kotlin("test"))
 
