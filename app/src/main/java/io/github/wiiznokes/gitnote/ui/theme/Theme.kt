@@ -1,5 +1,6 @@
 package io.github.wiiznokes.gitnote.ui.theme
 
+import android.app.Activity
 import android.os.Build
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -9,9 +10,13 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import io.github.wiiznokes.gitnote.MyApp
 import io.github.wiiznokes.gitnote.R
 
@@ -100,18 +105,16 @@ fun GitNoteTheme(
         else -> LightColors
     }
 
-    // todo: find if this comment fix the status bar issue (no)
-    /*
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            // 设置状态栏透明，让内容延伸到状态栏区域
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+            // 根据主题设置状态栏图标颜色（浅色主题=深色图标，深色主题=浅色图标）
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
-
-     */
 
     CompositionLocalProvider(
         LocalSpaces provides Spaces()
@@ -144,4 +147,5 @@ enum class Theme {
 
 val MaterialTheme.topBarColor: @Composable () -> Color
     get() = { this.colorScheme.surfaceColorAtElevation(3.0.dp) }
+
 

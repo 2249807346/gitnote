@@ -2,14 +2,9 @@
 <resources>
 
     <style name="Theme.GitNote" parent="android:Theme.Material.NoActionBar">
-        <!-- impossible to integrate rn because of Android doc
-        blocking: contrast between android icon and the status bar
-
-        For the padding, use .statusBarsPadding() on a Modifier
-
+        <!-- 启用状态栏透明，让内容可以延伸到状态栏 -->
         <item name="android:windowTranslucentStatus">true</item>
+        <!-- 强制状态栏对比度，确保图标可见性 -->
         <item name="android:enforceStatusBarContrast">true</item>
-        <item name="android:windowLightStatusBar">true</item>
-        -->
     </style>
 </resources>
